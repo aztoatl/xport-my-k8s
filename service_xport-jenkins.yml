@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xport-jenkins
+  labels:
+    run: xport-jenkins
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: xport-jenkins

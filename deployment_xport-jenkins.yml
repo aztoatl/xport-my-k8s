@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xport-jenkins
+  namespace: xport-jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xport-jenkins
+  template:
+    metadata:
+      labels:
+        app: xport-jenkins
+    spec:
+      securityContext:
+        fsGroup: 2000
+        #runAsNonRoot: false
+        runAsUser: 0
+      containers:
+      - name: xport-jenkins
+        image: aztoatl/jenkocker
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: external-port
+        - containerPort: 5000
+          name: internal-port
+        volumeMounts:
+        - name: jenkins-storage
+          mountPath: /var/jenkins_home
+        - name: docker-sock-volume
+          mountPath: /var/run/docker.sock
+      volumes:
+      - name: jenkins-storage
+        persistentVolumeClaim:
+          claimName: jk-pv-claim
+      - name: docker-sock-volume
+        hostPath:
+          path: /var/run/docker.sock
+          type: File
+    
+
+ 

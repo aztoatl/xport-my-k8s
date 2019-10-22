@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xport-site
+  namespace: xport-site
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: xport-site
+  template:
+    metadata:
+      labels:
+        app: xport-site
+    spec:
+      containers:
+      - name: xport-site
+        image: aztoatl/web_server:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
