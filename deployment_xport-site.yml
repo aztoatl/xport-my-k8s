@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: xport-site
-        image: aztoatl/web_server:v1
+        image: aztoatl/web_server:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
