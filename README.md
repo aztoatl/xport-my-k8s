@@ -1,5 +1,5 @@
 # xport-my-k8s
-##How to install kubernetes in AWS using KOPS
+# # How to install kubernetes in AWS using KOPS
 
 **creating S3 bucket for storing cluster configuration**
 ```
